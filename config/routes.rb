@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   
   root 'contacts#index'
-  get 'contacts', to: 'contacts#contacts'
+  get '/contacts', to: 'contacts#index'
+  get '/contacts/new', to: 'contacts#new'
+  post '/contacts', to: 'contacts#create'
+  get '/contacts/:id', to: 'contacts#show'
+  get '/contacts/:id/edit', to: 'contacts#edit'
+  patch '/contacts/:id', to: 'contacts#update'
+  delete '/contacts/:id', to: 'contacts#destroy'
   
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
