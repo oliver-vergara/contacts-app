@@ -1,9 +1,10 @@
 
- <p>Full Name <%= @contact.name %></p>
- <p>Address <%= @contact.address %></p>
- <p>Phone <%= @contact.friendly_jap_code %></p>
- <p>Updated At <%= @contact.friendly_updated_at%></p>     
+ <p>Full Name: <%= @contact.full_name %></p>
+ <p>Address: <%= @contact.address %></p>
+ <p>Phone: <%= @contact.jap_code %></p>
+ <p>Updated At: <%= @contact.friendly_updated_at%></p>  
+ <p>Coordinates: <%= @contact.latitude %><%= @contact.longitude %></p>   
   
-
-<%= link_to "Delete", "/contacts/#{@contact.id}", method: :delete %>
+<p><%= link_to "Edit", "/contacts/#{@contact.id}/edit", method: :get %></p>
+<p><%= link_to "Delete", "/contacts/#{@contact.id}", method: :delete %></p>
 

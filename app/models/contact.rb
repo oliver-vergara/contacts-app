@@ -5,11 +5,11 @@ class Contact < ActiveRecord::Base
     updated_at.strftime("%A, %d %b %Y %l:%M %p")
   end
 
-  def friendly_full_name
-    first_name +last_name
+  def full_name
+    "#{first_name}  #{middle_name}  #{last_name}"
   end
 
-  def friendly_jap_code
+  def jap_code
     "+81 #{phone_number}"
   end
 

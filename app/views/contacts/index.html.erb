@@ -1,9 +1,9 @@
 <table>
-<% @contacts.each do |contact| %>
-<tr>
-<td><a href="/contacts/<%= contact.id %>"><%= contact.name %></a></td>
-</tr>
-<% end %>
+  <% @contacts.each do |contact| %>
+    <tr>
+      <td><a href="/contacts/<%= contact.id %>"><%= contact.phone_number %></a></td>
+    </tr>
+  <% end %>
 </table>
  
 
