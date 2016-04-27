@@ -1,10 +1,25 @@
-<table>
-  <% @contacts.each do |contact| %>
-    <tr>
-      <td><a href="/contacts/<%= contact.id %>"><%= contact.phone_number %></a></td>
-    </tr>
-  <% end %>
-</table>
+      
+<% if current_user %>
+  <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+<% else %>
+  <li><%= link_to "Sign Up", "/users/sign_up" %></li>
+  <li><%= link_to "Sign In", "/users/sign_in" %></li>
+<% end %>
+      
+<% if current_user %>
+  <a href="/contacts?sort=first_name">Sort by First Name </a>
+  <a href="/contacts?sort=last_name">Sort by Last Name</a>
+
+  <table>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><a href="/contacts/<%= contact.id %>"><%= contact.full_name %></a></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+
  
 
  

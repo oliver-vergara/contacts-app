@@ -1,7 +1,12 @@
 class ContactsController < ApplicationController
   
   def index
-    @contacts = Contact.all
+    sort = params[:sort]
+    if sort = nil
+      @contacts = current_user.contacts
+    else
+      @contacts = Contact.order(sort)
+    end
   end
 
   def show
@@ -13,8 +18,9 @@ class ContactsController < ApplicationController
   end 
 
   def create
-    coordinates = Geocoder.coordinates(params[:address])
-    new_contact = Contact.new(first_name: params[:first_name], middle_name: params[:middle_name], last_name: params[:last_name], address: params[:address], phone_number: params[:phone_number], latitude: coordinates[0], longitude: coordinates[1])
+    address = params[:address]
+    coordinates = Geocoder.coordinates(address)
+    new_contact = Contact.new(first_name: params[:first_name], middle_name: params[:middle_name], last_name: params[:last_name], address: params[:address], phone_number: params[:phone_number], latitude: coordinates[0], longitude: coordinates[1], user_id: current_user.id)
     new_contact.save
     flash[:success] = "Contact Added"
     redirect_to "/contacts/#{new_contact.id}"
@@ -45,12 +51,5 @@ class ContactsController < ApplicationController
     flash[:success] = "Contact Deleted"
     redirect_to "/contacts"
   end
-
-  def geocoder
-     coordinates = Geocoder.coordinates(address)
-  end
-
-
-
 
 end
